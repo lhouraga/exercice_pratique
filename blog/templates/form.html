@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <title></title>
+</head>
+<body >
+
+  <header>
+        <nav class="navbar navbar-default navbar-fixed-top" id="navBar">
+        <div class="row"><p id="notificationDeconnexion" style="background-color: #F39400;text-align: center;padding: 7px;color: white;font-weight: bold;opacity: 0;"></p></div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="nav-button" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+                        <a class="navbar-brand" href="/">
+                            <img style=" max-width: 40px;" src="/../blog/images/ayomi.jpg">
+                        </a>
+
+
+
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                 <form class="navbar-form navbar-right"><input type='hidden' name='csrfmiddlewaretoken' value='LNTicrg6o1coIhRLc7n2oObpxKKViEbU' />
+                    <div class="button-group">
+
+
+
+
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+
+                   <li><a id="exo" href="/">EXERCICE PRATIQUE</a></li>
+                    <li><a id="contactUs" href="https://ayomi.fr/">AYOMI</a></li>
+                    <li><a id="startFinance" href="https://linkedin.com/in/lauraine-houraga-6b087a12b/">Lauraine Houraga</a></li>
+
+
+                </ul>
+
+            </div>
+                <div id="testAlert">
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+
+
+
+<center> EXERCICE PRATIQUE <img src="\images\ayomi.jpg" class="img-rounded"> </center>
+<br/><br/><br/><br/>
+<div id="login" class="container" width="100px">
+    {% if user.is_authenticated %}
+       <h1> Bienvenue </h1>
+    {% else %}
+        <h1> Se connecter</h1>
+
+    {% endif %}
+
+{% if error %}
+<p><strong><h1>Oups!!!</h1><br/> Une erreur est survenue, mot de passe ou nom d'utilisateur incorrecte</strong></p>
+{% endif %}
+
+{% if user.is_authenticated %}
+<b>Vous êtes connecté, {{ user.username }}  !</b>
+    <form method="post" action=".">
+    {% csrf_token %}
+    <input type="submit" value="AFFICHER SES INFOS" class="btn btn-primary" />
+</form>
+
+    <form method="post" action="modifier/">
+    {% csrf_token %}
+    <input type="submit" value="MODIFIER EMAIL" class="btn btn-danger" />
+</form>
+
+    <form method="post" action="deconnexion/">
+    {% csrf_token %}
+    <input type="submit" value="se deconnecter" class="btn btn-warning" />
+</form>
+{% else %}
+<form method="post" action=".">
+    <div class="form-group form-group-lg">
+    {% csrf_token %}
+        {{ form }}
+    <input type="submit" value="Se connecter" class="btn btn-success" />
+</div>
+</form>
+{% endif %}
+ </div>
+
+<footer>
+<div id="footer">
+       <center> <p>&copy;  Lauraine_HOURAGA &nbsp;Mai 2019 &nbsp;</p></center>
+    </div>
+ </footer>
+
+
+
+
+</body>
+</html>
